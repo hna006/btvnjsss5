@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let booksId = [];
+let booksName = [];
+let bookStatus = [];
+
+let soLuong = parseInt(prompt("Có bao nhiêu cuốn sách cần kiểm tra tình trạng hôm nay?"));
+
+if (isNaN(soLuong) || soLuong <= 0) {
+  alert("Vui lòng nhập một số nguyên dương.");
+} else {
+  for (let i = 0; i < soLuong; i++) {
+    let id;
+    do {
+      id = prompt(`Nhập mã sách thứ ${i + 1}:`);
+      if (!id || id.trim() === "") {
+        alert("Mã sách không được để trống.");
+      }
+    } while (!id || id.trim() === "");
+
+    let name;
+    do {
+      name = prompt(`Nhập tên sách thứ ${i + 1}:`);
+      if (!name || name.trim() === "") {
+        alert("Tên sách không được để trống.");
+      }
+    } while (!name || name.trim() === "");
+
+    let statusCode;
+    do {
+      statusCode = parseInt(prompt(`Nhập tình trạng ban đầu:\n1 - Hỏng nhẹ\n2 - Hỏng nặng\n3 - Cần sửa gấp`));
+      if (![1, 2, 3].includes(statusCode)) {
+        alert("Mã tình trạng không hợp lệ.");
+      }
+    } while (![1, 2, 3].includes(statusCode));
+
+    let statusText = statusCode === 1 ? "Hỏng nhẹ" :
+                     statusCode === 2 ? "Hỏng nặng" : "Cần sửa gấp";
+
+    booksId.push(id);
+    booksName.push(name);
+    bookStatus.push(statusText);
+  }
+  console.log(`Danh sách hiện tại (${booksId.length} cuốn):`);
+  for (let i = 0; i < booksId.length; i++) {
+    console.log(`${i + 1}. ${booksId[i]} - ${booksName[i]} - ${bookStatus[i]}`);
+  }
+  while (true) {
+    let action = prompt("Chọn thao tác:\n1 - Cập nhật tình trạng sách\n2 - Loại bỏ sách\n0 - Kết thúc và tạo báo cáo");
+
+    if (action === "0") break;
+
+    if (action === "1") {
+      let idUpdate = prompt("Nhập mã sách cần cập nhật:");
+      let index = booksId.indexOf(idUpdate);
+      if (index === -1) {
+        alert("Không tìm thấy mã sách.");
+        continue;
+      }
+
+      let newStatusCode;
+      do {
+        newStatusCode = parseInt(prompt("Chọn tình trạng mới:\n1 - Hỏng nhẹ\n2 - Hỏng nặng\n3 - Cần sửa gấp\n4 - Đã sửa xong\n5 - Loại bỏ"));
+        if (![1, 2, 3, 4, 5].includes(newStatusCode)) {
+          alert("Mã tình trạng không hợp lệ.");
+        }
+      } while (![1, 2, 3, 4, 5].includes(newStatusCode));
+
+      let newStatusText = newStatusCode === 1 ? "Hỏng nhẹ" :
+                          newStatusCode === 2 ? "Hỏng nặng" :
+                          newStatusCode === 3 ? "Cần sửa gấp" :
+                          newStatusCode === 4 ? "Đã sửa xong" : "Loại bỏ";
+
+      bookStatus[index] = newStatusText;
+    } else if (action === "2") {
+      let idRemove = prompt("Nhập mã sách cần loại bỏ:");
+      let index = booksId.indexOf(idRemove);
+      if (index === -1) {
+        alert("Không tìm thấy mã sách.");
+        continue;
+      }
+
+      booksId.splice(index, 1);
+      booksName.splice(index, 1);
+      bookStatus.splice(index, 1);
+    } else {
+      alert("Lựa chọn không hợp lệ.");
+      continue;
+    }
+    console.log(`Danh sách cập nhật (${booksId.length} cuốn):`);
+    for (let i = 0; i < booksId.length; i++) {
+      console.log(`${i + 1}. ${booksId[i]} - ${booksName[i]} - ${bookStatus[i]}`);
+    }
+  }
+  let daSuaXong = 0;
+  let daLoaiBo = 0;
+
+  for (let i = 0; i < bookStatus.length; i++) {
+    if (bookStatus[i] === "Đã sửa xong") daSuaXong++;
+    if (bookStatus[i] === "Loại bỏ") daLoaiBo++;
+  }
+
+  console.log("=== BÁO CÁO CUỐI CA ===");
+  console.log(`Tổng số sách còn lại: ${booksId.length}`);
+  console.log(`Số sách đã sửa xong: ${daSuaXong}`);
+  console.log(`Số sách đã loại bỏ: ${daLoaiBo}`);
+  if (booksId.length > 0) {
+    console.log("Danh sách sách còn lại:");
+    for (let i = 0; i < booksId.length; i++) {
+      console.log(`${i + 1}. ${booksId[i]} - ${booksName[i]} - ${bookStatus[i]}`);
+    }
+  }
+}</script>
+</body>
+</html>

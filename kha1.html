@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let danhSachSach = [];
+let soLuong = parseInt(prompt("Bạn muốn trả bao nhiêu cuốn sách?"));
+
+if (isNaN(soLuong) || soLuong <= 0) {
+  alert("Vui lòng nhập một số nguyên dương.");
+} else {
+  for (let i = 0; i < soLuong; i++) {
+    let tenSach = prompt(`Nhập tên cuốn sách thứ ${i + 1}:`);
+    danhSachSach.push(tenSach);
+  }
+  console.log(`Tổng số sách đã được trả: ${danhSachSach.length}`);
+  console.log("Danh sách các cuốn sách đã trả:");
+  for (let i = 0; i < danhSachSach.length; i++) {
+    console.log(`- ${danhSachSach[i]}`);
+  }
+}</script>
+</body>
+</html>
