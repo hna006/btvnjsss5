@@ -11,9 +11,7 @@ let booksId = [];
 let booksName = [];
 let booksCategory = [];
 let inventoryQuantity = [];
-
 let soLuong = parseInt(prompt("Có bao nhiêu loại sách cần nhập thông tin hôm nay?"));
-
 if (isNaN(soLuong) || soLuong <= 0) {
   alert("Vui lòng nhập một số nguyên dương.");
 } else {
@@ -34,7 +32,6 @@ if (isNaN(soLuong) || soLuong <= 0) {
         alert("Tên sách không được để trống.");
       }
     } while (!name);
-
     let category;
     do {
       category = prompt(`Nhập các thể loại cho sách thứ ${i + 1} (cách nhau bởi dấu phẩy):`);
@@ -42,7 +39,6 @@ if (isNaN(soLuong) || soLuong <= 0) {
         alert("Thể loại không được để trống.");
       }
     } while (!category);
-
     let quantity;
     do {
       quantity = parseInt(prompt(`Nhập số lượng tồn kho của sách thứ ${i + 1} (≥ 0):`));
@@ -50,13 +46,11 @@ if (isNaN(soLuong) || soLuong <= 0) {
         alert("Số lượng không hợp lệ.");
       }
     } while (isNaN(quantity) || quantity < 0);
-
     booksId.push(id);
     booksName.push(name);
     booksCategory.push(category);
     inventoryQuantity.push(quantity);
   }
-
   let demLapTrinh = 0;
   for (let i = 0; i < booksCategory.length; i++) {
     if (booksCategory[i].toLowerCase().includes("lập trình")) {
@@ -77,9 +71,9 @@ if (isNaN(soLuong) || soLuong <= 0) {
       minIndex = i;
     }
   }
-
   console.log(`\nSách có tồn kho thấp nhất:`);
   console.log(`Mã: ${booksId[minIndex]} - Tên: ${booksName[minIndex]} - Tồn kho: ${inventoryQuantity[minIndex]} bản`);
 }</script>
 </body>
+
 </html>
