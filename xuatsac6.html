@@ -11,9 +11,7 @@ let readerCardIds = [];
 let readerNames = [];
 let borrowedBookCodes = [];
 let overdueDays = [];
-
 let soLuong = parseInt(prompt("Hôm nay có bao nhiêu bạn đọc quá hạn?"));
-
 if (isNaN(soLuong) || soLuong <= 0) {
   alert("Vui lòng nhập một số nguyên dương.");
 } else {
@@ -50,13 +48,11 @@ if (isNaN(soLuong) || soLuong <= 0) {
         alert("Số ngày không hợp lệ.");
       }
     } while (isNaN(overdue) || overdue < 0);
-
     readerCardIds.push(cardId);
     readerNames.push(name);
     borrowedBookCodes.push(bookCodes);
     overdueDays.push(overdue);
   }
-
   console.log(`Danh sách bạn đọc quá hạn (${readerCardIds.length} người):`);
   for (let i = 0; i < readerCardIds.length; i++) {
     console.log(`${i + 1}. Mã thẻ: ${readerCardIds[i]} | Tên: ${readerNames[i]} | Sách đang mượn: ${borrowedBookCodes[i]} | Quá hạn: ${overdueDays[i]} ngày`);
@@ -66,7 +62,6 @@ if (isNaN(soLuong) || soLuong <= 0) {
     if (overdueDays[i] >= 10) demQuaHan10++;
   }
   console.log(`\nTổng số bạn đọc quá hạn ≥ 10 ngày: ${demQuaHan10} người`);
-
   let maTheJS_PYT = [];
   for (let i = 0; i < borrowedBookCodes.length; i++) {
     let codes = borrowedBookCodes[i].split(",");
@@ -93,4 +88,5 @@ if (isNaN(soLuong) || soLuong <= 0) {
   }
 }</script>
 </body>
+
 </html>
